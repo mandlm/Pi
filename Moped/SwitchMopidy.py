@@ -1,4 +1,4 @@
-﻿#!/usr/bin/python
+#!/usr/bin/python
 
 import glob
 import os
@@ -10,6 +10,9 @@ import RPi.GPIO as GPIO
 yellowLed = 15
 redLed = 17
 greenLed = 18
+
+buttonPin = 27
+dummyPin = 1
 
 mopidyConf = '/etc/mopidy/mopidy.conf'
 userDir = '/etc/mopidy/conf.user/'
@@ -79,9 +82,6 @@ def buttonHandler(channel):
 		print 'Error: ' + e.strerror
 
 if __name__ == '__main__':
-	buttonPin = 4
-	dummyPin = 15
-
 	GPIO.setmode(GPIO.BCM)
 
 	GPIO.setup(yellowLed, GPIO.OUT)
@@ -92,6 +92,8 @@ if __name__ == '__main__':
 	GPIO.setup(dummyPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 	GPIO.add_event_detect(buttonPin, GPIO.FALLING, callback=buttonHandler, bouncetime=1000)
+
+        setConfiguredLedColor()
 
 	try:
 		while True:
