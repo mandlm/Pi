@@ -4,8 +4,6 @@ from time import sleep
 
 import RPi.GPIO as GPIO
 
-print 'blah'
-
 pin = 14
 
 try:
@@ -18,8 +16,6 @@ try:
         GPIO.output(pin, 0)
         sleep(1)
 except KeyboardInterrupt:
-    GPIO.output(pin, 0)
+    pass
 finally:
     GPIO.cleanup()
-
-print 'end'
