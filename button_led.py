@@ -8,7 +8,6 @@ ledPin = 14
 buttonPin = 16
 
 def buttonHandler(channel):
-    print "button pushed"
     GPIO.output(ledPin, not GPIO.input(ledPin))
 
 try:
@@ -23,8 +22,7 @@ try:
     
     while True:
         GPIO.wait_for_edge(15, GPIO.RISING)
-        print "blah"
 except KeyboardInterrupt:
-    GPIO.output(ledPin, False)
+    pass
 finally:
     GPIO.cleanup()
